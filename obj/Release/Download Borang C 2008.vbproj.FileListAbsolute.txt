@@ -1,0 +1,19 @@
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Download Borang C 2008.vbproj.ResolveComReference.cache
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Download Borang C 2008.vbproj.GenerateResource.Cache
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\BorangC.frmDownloadMainMenu.resources
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\BorangC.frmDownloadPost.resources
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\BorangC.frmDownloadDetails.resources
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\BorangC.Resources.resources
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\bin\Release\Borang C.exe.config
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\bin\Release\Borang C.exe
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\bin\Release\Borang C.pdb
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\bin\Release\Borang C.xml
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Borang C.exe
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Borang C.xml
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Borang C.pdb
+D:\Share Folder\TAXCOM CODE VBNET\Visual Studio .NET\BorangC SQL\obj\Release\Download Borang C 2008.vbprojResolveAssemblyReference.cache
+C:\Users\Azham\Documents\GitHub\PDF_C_SQL\bin\Release\Borang C.exe.config
+C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Download Borang C 2008.vbproj.ResolveComReference.cache
+C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.exe
+C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.xml
+C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.pdb
