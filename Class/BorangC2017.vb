@@ -3287,7 +3287,7 @@ Public Class BorangC2017
                     pdfFormFields.SetField(pdfFieldFullPath + "P1_6", " ")
                 End If
 
-                If Not String.IsNullOrEmpty(dr("TP_STS_OTHER")) And Not IsDBNull(dr("TP_STS_OTHER")) Then
+                If Not IsDBNull(dr("TP_STS_OTHER")) AndAlso Not String.IsNullOrEmpty(dr("TP_STS_OTHER")) Then
                     pdfFormFields.SetField(pdfFieldFullPath + "C2017_3", dr("TP_STS_OTHER"))
                 Else
                     pdfFormFields.SetField(pdfFieldFullPath + "C2017_3", "")
@@ -3624,7 +3624,7 @@ Public Class BorangC2017
             End If
 
         Catch ex As Exception
-            MsgBox("Some important data is not fill in page 11!", MsgBoxStyle.Critical, "Caution")
+            MsgBox("Some important data is not fill in page 11!" & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Caution")
             pdfStamper.Close()
         End Try
     End Sub
