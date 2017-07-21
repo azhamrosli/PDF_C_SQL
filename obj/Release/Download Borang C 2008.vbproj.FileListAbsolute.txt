@@ -17,3 +17,16 @@ C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Download Borang C 2008.vbp
 C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.exe
 C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.xml
 C:\Users\Azham\Documents\GitHub\PDF_C_SQL\obj\Release\Borang C.pdb
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\bin\Release\Borang C.exe.config
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\Download Borang C 2008.vbproj.ResolveComReference.cache
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\Borang C.exe
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\Borang C.xml
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\Borang C.pdb
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\bin\Release\Borang C.exe
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\bin\Release\Borang C.pdb
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\bin\Release\Borang C.xml
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\BorangC.frmDownloadMainMenu.resources
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\BorangC.frmDownloadPost.resources
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\BorangC.frmDownloadDetails.resources
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\BorangC.Resources.resources
+C:\Users\Azham-PC\Source\Repos\PDF_C_SQL\obj\Release\Download Borang C 2008.vbproj.GenerateResource.Cache

@@ -231,7 +231,7 @@ Public Class BorangC2015
                 If IsDBNull(dr("TP_OPN_OPERATION")) = False Then
 
                     'DannyLee 2015 SU1
-                    If CStr(dr("TP_OPN_OPERATION")) = "00:00:00" Then
+                    If CStr(dr("TP_OPN_OPERATION")) = "00:00:00" OrElse Format(dr("TP_OPN_OPERATION"), "yyyy") = "1899" Then
                         pdfFormFields.SetField(pdfFieldFullPath + "VII_1", "")
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath + "VII_1", Mid(Format(dr("TP_OPN_OPERATION"), "ddMMyyyy"), 1, 8))
@@ -776,7 +776,7 @@ Public Class BorangC2015
                         ElseIf rowcount > 2 Then
                             ' Total Perkongsian for source more than 5 
                             lngTotalPartnerAmount = lngTotalPartnerAmount + CDbl(dr2("PN_TOTAL_STAT_INCOME"))
-                            pdfFormFields.SetField(pdfFieldFullPath + "A10_2", lngTotalPartnerAmount.ToString.Replace(",", ""))
+                            pdfFormFields.SetField(pdfFieldFullPath + "A9_2", lngTotalPartnerAmount.ToString.Replace(",", ""))
                         End If
 
 
@@ -790,10 +790,10 @@ Public Class BorangC2015
                     dr2.Close()
                 Loop
 
-                While I < 10        ' Still less than 5 source
-                    I = I + 1
-                    pdfFormFields.SetField(pdfFieldFullPath + "A" + I.ToString + "_2", "0")
-                End While
+                'While I < 10        ' Still less than 5 source
+                '    I = I + 1
+                '    pdfFormFields.SetField(pdfFieldFullPath + "A" + I.ToString + "_2", "0")
+                'End While
 
                 dr.Close()
                 'endweihong
