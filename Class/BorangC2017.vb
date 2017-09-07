@@ -1409,7 +1409,8 @@ Public Class BorangC2017
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath + "B6_2", "000")
                     End If
-                    If IsDBNull(dr("IH_APP_CHARGE_IN7")) = False Then
+
+                    If IsDBNull(dr("IH_APP_CHARGE_IN6")) = False Then
                         pdfFormFields.SetField(pdfFieldFullPath + "B7_1", Replace(CDbl(dr("IH_APP_CHARGE_IN6")), ",", ""))
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath + "B7_1", "0")
@@ -1499,7 +1500,7 @@ Public Class BorangC2017
                         pdfFormFields.SetField(pdfFieldFullPath2 + "B16", "000")
                         pdfFormFields.SetField(pdfFieldFullPath2 + "B17", "000")
                     End If
-                    MsgBox("O")
+                    'MsgBox("O")
                     ' Investment Holding part B
                     If IsDBNull(dr("IH_ITP")) = False Then
                         If (dr("IH_ITP")) >= 0 Then
