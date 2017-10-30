@@ -240,64 +240,6 @@ Public Class BorangC2015
                 End If
                 'simkh end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 If dr("TP_PUBLIC_ORDER") = "0" Then
                     pdfFormFields.SetField(pdfFieldFullPath + "IX_1", "X")
                     pdfFormFields.SetField(pdfFieldFullPath + "IX_2", "")
@@ -1673,7 +1615,7 @@ Public Class BorangC2015
         Dim TotalCAForYr As Double = 0.0 'weihong
         Dim TotalAcceleratedCA As Double = 0.0 'weihong
         Dim TotalBalBF As Double = 0.0 'weihong
-
+        Dim ErrorLog As String = "1"
 
         'Ho Gie - e6a to e10a and e6b to e10b
         Dim rowCount As Integer = 0
@@ -1770,7 +1712,7 @@ Public Class BorangC2015
                     " ORDER BY  PN_SOURCENO"
 
 
-
+            ErrorLog = "2"
             dr = DataHandler.GetDataReader(cSQL, Conn)
             I = 5
 
@@ -1815,7 +1757,7 @@ Public Class BorangC2015
             pdfFormFields.SetField(pdfFieldFullPath + "E11", "0")
             ' E11
             ' HS : C2008.7 : CA_ADD_CURR_AMT Added
-
+            ErrorLog = "3"
             'NGOHCS CA2008  
             'weihong Add CA_ACCELERATED
             cSQL = "Select CA_RATE_AA, CA_QUALIFYING_COST, CA_RATE_IA, CA_REMAIN_QC, CA_TWDV" _
@@ -1839,7 +1781,7 @@ Public Class BorangC2015
                 Else
                     dblE11IARATE = CDbl(dr("CA_RATE_IA"))
                 End If
-
+                ErrorLog = "4"
                 If IsDBNull(dr("CA_RATE_AA")) = False Or IsDBNull(dr("CA_QUALIFYING_COST")) = False Or IsDBNull(dr("CA_RATE_IA")) = False Then
                     'LeeCC 2011.5 ctrl transfer
                     Dim dblAA As Double
@@ -1860,7 +1802,7 @@ Public Class BorangC2015
                     TotalIA += dblIA
                 End If
             Loop
-
+            ErrorLog = "5"
             'weihong Add CA_ACCELERATED
             cSQL = "Select CA_KEY, CA_RATE_AA, CA_QUALIFYING_COST, CA_RATE_IA, CA_REMAIN_QC, CA_TWDV" _
                            & " from CA" _
@@ -1885,20 +1827,20 @@ Public Class BorangC2015
                     dblE11IARATE = CDbl(dr("CA_RATE_IA"))
                 End If
 
-
+                ErrorLog = "6"
                 If IsDBNull(dr("CA_RATE_AA")) = False Or IsDBNull(dr("CA_REMAIN_QC")) = False Or IsDBNull(dr("CA_RATE_IA")) = False Then
-                    cSQL = "SELECT count([CA_KEY]) as [NumRecord], sum(CA_DISP_QC) as [CA_IA_TOTAL], sum(CA_DISP_TWDV) from CA_DISPOSAL where CA_DISP_YA = '" & Trim(frmDownloadMainMenu.dgdDownload.SelectedRows.Item(0).Cells(2).Value) & "' and ca_key= " & Val(dr("CA_KEY"))
+                    cSQL = "SELECT count([CA_KEY]) as [NumRecord], sum(cast(CA_DISP_QC as money)) as [CA_IA_TOTAL], sum(cast(CA_DISP_TWDV as money)) from CA_DISPOSAL where CA_DISP_YA = '" & Trim(frmDownloadMainMenu.dgdDownload.SelectedRows.Item(0).Cells(2).Value) & "' and ca_key= " & Val(dr("CA_KEY"))
                     dr2 = DataHandler.GetDataReader(cSQL, ConnCA)
 
                     'LeeCC 2011.5 ctrl transfer
                     Dim dblAA As Double
                     Dim dblIA As Double
-
+                    ErrorLog = "7"
                     If dr2.Read() Then
                         If Val(dr2("NumRecord")) > 0 Then
                             'TotalAA = TotalAA + Math.Round((CDbl(dr("CA_RATE_AA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST")) - CDbl(dr2("CA_IA_TOTAL"))), 2)
                             'TotalIA = TotalIA + Math.Round((CDbl(dr("CA_RATE_IA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST")) - CDbl(dr2("CA_IA_TOTAL"))), 2)
-
+                            ErrorLog = "8"
                             'LeeCC 2011.5 ctrl transfer 
                             dblAA = Math.Round((CDbl(dr("CA_RATE_AA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST")) - CDbl(dr2("CA_IA_TOTAL"))), 2)
                             dblIA = Math.Round((CDbl(dr("CA_RATE_IA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST")) - CDbl(dr2("CA_IA_TOTAL"))), 2)
@@ -1910,7 +1852,7 @@ Public Class BorangC2015
                         Else
                             'TotalAA = TotalAA + Math.Round((CDbl(dr("CA_RATE_AA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST"))), 2)
                             'TotalIA = TotalIA + Math.Round((CDbl(dr("CA_RATE_IA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST"))), 2)
-
+                            ErrorLog = "9"
                             'LeeCC 2011.5 ctrl transfer 
                             dblAA = Math.Round((CDbl(dr("CA_RATE_AA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST"))), 2)
                             dblIA = Math.Round((CDbl(dr("CA_RATE_IA")) / 100) * (CDbl(dr("CA_QUALIFYING_COST"))), 2)
@@ -1940,7 +1882,7 @@ Public Class BorangC2015
                 End If
             Loop
             'NGOHCS CA2008 END
-
+            ErrorLog = "10"
             'weihong Total accelerated is dblAAAccelerated + dblIAAccelerated
             If TotalAcceleratedCA > 0 Then
                 'LeeCC Modify Accelerated CA SU3.4 start
@@ -1979,6 +1921,7 @@ Public Class BorangC2015
                     dr3.Close()
                 End While
                 dr2.Close()
+                ErrorLog = "11"
                 'TotalE11a = TotalUtilCA - (TotalCAForYr + TotalBalBF - TotalAcceleratedCA)
                 'If TotalE11a > 0 Then
                 '    pdfFormFields.SetField(pdfFieldFullPath + "E11a", Format(TotalE11a, 0).ToString.Replace(",", ""))
@@ -2000,7 +1943,7 @@ Public Class BorangC2015
             pdfFormFields.SetField(pdfFieldFullPath + "E11b", TotalE11b)
             'LeeCC Modify Accelerated CA SU3.4 end
             'endweihong
-
+            ErrorLog = "12"
             TotalE11 = Math.Round(TotalAA, 0) + Math.Round(TotalIA, 0)
             pdfFormFields.SetField(pdfFieldFullPath + "E11", Format(TotalE11, 0).ToString.Replace(",", ""))
             ' E12
@@ -2105,7 +2048,7 @@ Public Class BorangC2015
             End If
 
         Catch ex As Exception
-            MsgBox("Some important data is not fill in page 5!", MsgBoxStyle.Critical, "Caution")
+            MsgBox("Some important data is not fill in page 5!" & ErrorLog, MsgBoxStyle.Critical, "Caution")
             pdfStamper.Close()
         End Try
     End Sub
@@ -2443,38 +2386,6 @@ Public Class BorangC2015
                     pdfFormFields.SetField(pdfFieldFullPath + "K2_2", " ")
                     'LEESH END
                 End If
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             Else
                 pdfFormFields.SetField(pdfFieldFullPath + "K1_1", " ")
@@ -3670,15 +3581,6 @@ Public Class BorangC2015
                     pdfFormFields.SetField(pdfFieldFullPath + "P13" + strIndex, space(12))
                 End If
 
-
-
-
-
-
-
-
-
-
                 If IsDBNull(dr("DIR_REFTYPE")) = False And dr("DIR_REFTYPE") <> "" Then
                     pdfFormFields.SetField(pdfFieldFullPath + "P14" + strIndex + "_1", dr("DIR_REFTYPE"))
                 Else
@@ -3836,12 +3738,6 @@ Public Class BorangC2015
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath + "Q" + intIndex.ToString + "_5", "--")
                     End If
-
-
-
-
-
-
 
                 End If
             Loop
@@ -4114,43 +4010,6 @@ Public Class BorangC2015
                 If IsDBNull(dr("TP_IMD_COUNTRY_CODE")) = False Then
                     pdfFormFields.SetField(pdfFieldFullPath + "R5b_3", dr("TP_IMD_COUNTRY_CODE"))
                 End If
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             End If
             'simkh end
