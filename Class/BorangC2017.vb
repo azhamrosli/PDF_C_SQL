@@ -1343,7 +1343,7 @@ Public Class BorangC2017
             dr.Read()
             If dr("PL_S60F") = "Y" Then
                 cSQL = "SELECT IH_APP_CHARGE_IN1, IH_APP_CHARGE_IN2, IH_APP_CHARGE_IN3, IH_APP_CHARGE_IN4, IH_APP_CHARGE_IN4A, IH_APP_CHARGE_IN5, IH_APP_CHARGE_IN6, IH_RATE1, IH_RATE2, IH_RATE3, IH_RATE4, IH_RATE4A, IH_RATE5, IH_RATE6," _
-                      & " IH_SEC6B_REBATE, IH_ITP_SETOFF, IH_ITP_SETOFF_OTH, IH_SEC132, IH_SEC133, IH_TOTAL_TAX_CHARGED, IH_TOTAL_SETOFF, IH_ITP_SETOFF_110B, IH_ITP ,  IH_INSTALLMENTS , IH_TP_BAL" _
+                      & " IH_SEC6B_REBATE, IH_ITP_SETOFF, IH_ITP_SETOFF_OTH, IH_SEC132, IH_SEC133, IH_TOTAL_TAX_CHARGED, IH_TOTAL_SETOFF, IH_ITP_SETOFF_110B, IH_ITP ,  IH_INSTALLMENTS , IH_TP_BAL, IH_TP_INSTALL_107C, IH_TP_INSTALL_107A" _
                       & " FROM [INVESTMENT_HOLDING]" _
                       & " WHERE [IH_REF_NO] = '" & Trim(frmDownloadMainMenu.dgdDownload.SelectedRows.Item(0).Cells(1).Value) & "' And IH_YA='" & Trim(frmDownloadMainMenu.dgdDownload.SelectedRows.Item(0).Cells(2).Value) & "'"
                 dr = DataHandler.GetDataReader(cSQL, Conn)
@@ -1511,14 +1511,27 @@ Public Class BorangC2017
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath2 + "C1", "000")
                     End If
+
                     If IsDBNull(dr("IH_INSTALLMENTS")) = False Then
                         pdfFormFields.SetField(pdfFieldFullPath2 + "C2", Replace((Convert.ToDouble((dr("IH_INSTALLMENTS"))).ToString("0.00")), ".", "").Replace(",", "").Replace("-", ""))
                     Else
                         pdfFormFields.SetField(pdfFieldFullPath2 + "C2", "000")
                     End If
 
-                    pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_1", "000")
-                    pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_2", "000")
+                    If IsDBNull(dr("IH_TP_INSTALL_107C")) = False Then
+                        pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_1", Replace((Convert.ToDouble((dr("IH_TP_INSTALL_107C"))).ToString("0.00")), ".", "").Replace(",", "").Replace("-", ""))
+                    Else
+                        pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_1", "000")
+                    End If
+
+                    If IsDBNull(dr("IH_TP_INSTALL_107A")) = False Then
+                        pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_2", Replace((Convert.ToDouble((dr("IH_TP_INSTALL_107A"))).ToString("0.00")), ".", "").Replace(",", "").Replace("-", ""))
+                    Else
+                        pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_2", "000")
+                    End If
+
+                    'pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_1", "000")
+                    'pdfFormFields.SetField(pdfFieldFullPath2 + "C2017_2", "000")
 
                     If IsDBNull(dr("IH_TP_BAL")) = False Then
                         If CDbl(dr("IH_TP_BAL")) >= 0 Then
